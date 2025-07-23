@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <title>CRUD Nama</title>
+</head>
+<body>
+    <h2>Tambah Nama</h2>
+    <input type="text" id="nama" placeholder="Masukkan nama">
+    <button onclick="tambahNama()">Tambah</button>
+
+    <h2>Daftar Nama</h2>
+    <ul id="list-nama"></ul>
+
+    <script>
+        const apiURL = "http://localhost/server/vs%20code%20project/frontend/rest%20ajax/test%20ajax/api.php";
+
+        function getData() {
+            fetch(apiURL)
+                .then(res => res.json())
+                .then(data => {
+                    const list = document.getElementById("list-nama");
+                    list.innerHTML = "";
+                    data.forEach(item => {
+                        const li = document.createElement("li");
+                        li.textContent = item.nama + " ";
+                        const btn = document.createElement("button");
+                        btn.textContent = "Hapus";
+                        btn.onclick = () => hapusNama(item.id);
+                        li.appendChild(btn);
+                        list.appendChild(li);
+                    });
+                });
+        }
+
+        function tambahNama() {
+            const nama = document.getElementById("nama").value;
+            if (!nama) return alert("Nama tidak boleh kosong!");
+
+            fetch(apiURL, {
+                method: "POST",
+                headers: { "Content-Type": "application/json" },
+                body: JSON.stringify({ nama })
+            }).then(() => {
+                document.getElementById("nama").value = "";
+                getData();
+            });
+        }
+
+        function hapusNama(id) {
+            fetch(apiURL, {
+                method: "DELETE",
+                headers: { "Content-Type": "application/json" },
+                body: JSON.stringify({ id })
+            }).then(() => getData());
+        }
+
+        // Tampilkan data saat halaman dibuka
+        getData();
+    </script>
+</body>
+</html>
