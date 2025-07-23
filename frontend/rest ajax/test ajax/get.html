@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>IP Lookup API</title>
+</head>
+<body>
+  <h2>Info IP Kamu</h2>
+  <pre id="output">Memuat...</pre>
+
+  <script>
+    const apiKey = "5b1m86h312gs1321un4tk5d3b3gs742oj9g6h8m170gcrubbbtkd3o";
+    const url = `https://anyapi.io/api/v1/ip/lookup?apiKey=${apiKey}`;
+
+    fetch(url)
+      .then(response => {
+        if (!response.ok) {
+          throw new Error("Gagal mengambil data IP");
+        }
+        return response.json();
+      })
+      .then(data => {
+        document.getElementById("output").textContent = JSON.stringify(data, null, 2);
+      })
+      .catch(error => {
+        document.getElementById("output").textContent = "Terjadi kesalahan: " + error.message;
+      });
+  </script>
+</body>
+</html>

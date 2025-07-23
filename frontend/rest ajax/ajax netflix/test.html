@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Testing</title>
+  </head>
+  <body>
+    <h4>Testing</h4>
+    <button id="tambah_tugas">tambah tugas</button>
+    <button id="cari_tugas">cari tugas</button>
+    <ul id="container"></ul>
+
+    <script>
+      const tambah_tugas = document.getElementById("tambah_tugas");
+      const cari_tugas = document.getElementById("cari_tugas");
+      let container = document.getElementById("container");
+
+      //   membuat tugas baru
+      tambah_tugas.addEventListener("click", function () {
+        // membuat input
+        const input = document.createElement("input");
+        input.type = "text";
+        input.id = "input";
+        input.placeholder = "masukkan tugas";
+
+        // membuat button submit
+        const submit = document.createElement("button");
+        submit.id = "submit";
+        submit.textContent = "submit";
+
+        submit.addEventListener("click", function () {
+          const tugas = input.value.trim();
+          if (tugas === "") return;
+
+          // menampilkan semua data di container
+          const li = document.createElement("li");
+          li.textContent = tugas;
+
+          // membuat tombol hapus
+          const hapus = document.createElement("button");
+          hapus.id = "hapus";
+          hapus.textContent = "(X) hapus";
+          hapus.stykle.marginlleft = "10px";
+
+          // event hapus
+          hapus.addEventListener("click", function () {
+            container.removeChild(li);
+          });
+
+          // menggabungkna li
+          li.appendChild(hapus);
+
+          // tambahkan ke daftar
+          container.appendChild(li);
+
+          // kosongkan input
+          input.value = "";
+        });
+      });
+
+      //   mencari tugas
+      cari_tugas.addEventListener("click", function () {
+        const input_cari = document.createElement("input");
+        input_cari.id = "cari";
+      });
+    </script>
+  </body>
+</html>

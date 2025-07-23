@@ -1,6 +1,10 @@
+// untuk menampung kumpulan film
 const container = document.getElementById("movie-container");
+// mencari film
 const input = document.getElementById("search-input");
+// submit film
 const btn = document.getElementById("btn");
+// api key
 const apiKey = "a625ad88";
 
 btn.addEventListener("click", function () {
