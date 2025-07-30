@@ -1,7 +1,7 @@
 const fs = require("fs");
-const rl = require("readline");
+const readline = require("readline");
 
-const rl = Readline.interface({
+const rl = readline.createInterface({
   input: process.stdin,
   output: process.stdout,
 });
