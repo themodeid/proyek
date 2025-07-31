@@ -6,8 +6,10 @@ const rl = readline.createInterface({
   output: process.stdout,
 });
 
-rl.question("masukkan nama anda = ", function (nama) {
-  console.log(nama);
+const filePath = __dirname + "/kontak.json";
 
-  rl.close();
+rl.question("Masukkan nama anda = ", function (nama) {
+  rl.question("Masukkan umur anda = ", function (umur) {
+    // simpan ke file JSON
+  });
 });
