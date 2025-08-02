@@ -7,9 +7,55 @@
   </head>
   <body>
     <h4>latihan ke 3</h4>
+    <div id="root"></div>
 
     <script type="text/babel">
-        
+      function App() {
+        const [tugas, setTugas] = React.useState("");
+        const [daftarTugas, setDaftarTugas] = React.useState([]);
+
+        // menangani input
+        const handle = (event) => {
+          setTugas(event.target.value);
+        };
+
+        // menambah tugas baru
+        const tambahTugas = () => {
+          if (tugas.trim() !== "") {
+            setDaftarTugas([...daftarTugas, tugas]);
+            setTugas(""); // reset input
+          }
+        };
+
+        // menghapus tugas berdasarkan index
+        const hapusTugas = (index) => {
+          const baru = daftarTugas.filter((_, i) => i !== index);
+          setDaftarTugas(baru);
+        };
+
+        return (
+          <div>
+            <input
+              type="text"
+              value={tugas}
+              onChange={handle}
+              placeholder="masukkan tugas"
+            />
+            <button onClick={tambahTugas}>tambah tugas</button>
+
+            <ul>
+              {daftarTugas.map((item, index) => (
+                <li key={index}>
+                  {item}
+                  <button onClick={() => hapusTugas(index)}>X</button>
+                </li>
+              ))}
+            </ul>
+          </div>
+        );
+      }
+
+      ReactDOM.createRoot(document.getElementById("root")).render(<App />);
     </script>
   </body>
 </html>
