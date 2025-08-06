@@ -1,21 +1,26 @@
+<!DOCTYPE html>
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>callback</title>
+    <title>Callback</title>
   </head>
   <body>
-    <h1>belajar callback</h1>
+    <h1>Belajar Callback</h1>
+
     <script>
-      function sapa() {
-        console.log(`halo ${nama}`);
+      // Fungsi callback menerima parameter "nama"
+      function sapa(nama) {
+        console.log(`Halo ${nama}`);
       }
 
       function panggil(callback) {
-        const nama = adam;
-        callback(nama);
+        // "adam" harus berupa string (pakai tanda kutip)
+        const nama = "adam";
+        callback(nama); // kirim nama ke fungsi callback
       }
 
+      // Panggil fungsi dengan callback
       panggil(sapa);
     </script>
   </body>
