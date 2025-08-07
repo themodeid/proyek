@@ -2,26 +2,24 @@
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Callback</title>
+    <title>Callback dengan List Mahasiswa</title>
   </head>
   <body>
-    <h1>Belajar Callback</h1>
+    <h1>Callback dengan Mahasiswa</h1>
 
     <script>
-      // Fungsi callback menerima parameter "nama"
+      // Fungsi utama
+      function prosesData(nama, callback) {
+        callback(nama);
+      }
+
+      // Fungsi callback
       function sapa(nama) {
-        console.log(`Halo ${nama}`);
+        console.log(`Halo, ${nama}!`);
       }
 
-      function panggil(callback) {
-        // "adam" harus berupa string (pakai tanda kutip)
-        const nama = "adam";
-        callback(nama); // kirim nama ke fungsi callback
-      }
-
-      // Panggil fungsi dengan callback
-      panggil(sapa);
+      // Panggil fungsi utama dengan callback
+      prosesData("Adam", sapa);
     </script>
   </body>
 </html>
