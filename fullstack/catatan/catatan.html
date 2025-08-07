@@ -1,29 +1,32 @@
-<!DOCTYPE html>
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
-    <title>catatan</title>
-    <!-- React & Babel CDN -->
-    <script src="https://unpkg.com/react@18/umd/react.development.js" crossorigin></script>
-    <script src="https://unpkg.com/react-dom@18/umd/react-dom.development.js" crossorigin></script>
+    <script
+      src="https://unpkg.com/react@18/umd/react.development.js"
+      crossorigin
+    ></script>
+    <script
+      src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"
+      crossorigin
+    ></script>
     <script src="https://unpkg.com/babel-standalone@6/babel.min.js"></script>
+    <title>catatan</title>
   </head>
   <body>
     <div id="root"></div>
 
-    <!-- Script JSX menggunakan Babel -->
-    <script type="text/babel">
+    <script>
       function App() {
         return (
-          <div>
-            <div className="judul">
-              <h1>Catatan Belanjaku</h1>
+            <div className = "judul">
+                <h1>catatan belanjaku</h1>
             </div>
             <div>
-              <input id="barang" placeholder="Masukkan nama barang" />
-              <input id="jumlah" placeholder="Masukkan jumlah" />
+                <input id= "jumlah" placholder = "masukan jumlah ">
+                <input id= "jumlah" placholder = "masukan jumlah ">
+
             </div>
-          </div>
+
         );
       }
 
