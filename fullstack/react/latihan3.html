@@ -29,7 +29,7 @@
 
         // menghapus tugas berdasarkan index
         const hapusTugas = (index) => {
-          const baru = daftarTugas.filter((_, i) => i !== index);
+          const baru = daftarTugas.filter((_, i) => index !== i);
           setDaftarTugas(baru);
         };
 
@@ -55,7 +55,7 @@
         );
       }
 
-      ReactDOM.createRoot(document.getElementById("root")).render(<App />);
+      const root = ReactDOM.createRoot(document.getElementById("root")).render(<App />);
     </script>
   </body>
 </html>

@@ -1,27 +1,93 @@
-<!DOCTYPE html>
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
-    <title>catatan</title>
-    <!-- React & Babel CDN -->
-    <script src="https://unpkg.com/react@18/umd/react.development.js" crossorigin></script>
-    <script src="https://unpkg.com/react-dom@18/umd/react-dom.development.js" crossorigin></script>
+    <script
+      src="https://unpkg.com/react@18/umd/react.development.js"
+      crossorigin
+    ></script>
+    <script
+      src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"
+      crossorigin
+    ></script>
     <script src="https://unpkg.com/babel-standalone@6/babel.min.js"></script>
+    <title>catatan</title>
   </head>
   <body>
+    <h4></h4>
     <div id="root"></div>
 
-    <!-- Script JSX menggunakan Babel -->
     <script type="text/babel">
       function App() {
+        const [tugas, setTugas] = React.useState(""); // menambah tugas dan mengubah tugas
+        const [daftarTugas, setDaftarTugas] = React.useState([]); // tempat untuk menampung tugas tugas
+
+        //menangani input
+        const handle = (event) => {
+          setTugas(event.target.value);
+        };
+        // tambah
+        const tambahTugas = () => {
+          if (tugas.trim() !== "") {
+            // kondisi jika input kosong tidak dijalankan
+            setDaftarTugas([...daftarTugas, tugas]);
+            setTugas(""); // reset input
+          }
+        };
+
+        // hapus
+        const hapusTugas = (index) => {
+          const baru = daftarTugas.filter((_, i) => i !== index);
+          setDaftarTugas(baru);
+        };
+
+        // mengurutkan a-z
+        const urutAz = () => {
+          const diurutkan = [...daftarTugas].sort();
+          setDaftarTugas(diurutkan);
+        };
+
+        // mengurutkan z-a
+        const urutZa = () => {
+          const diurutkan = [...daftarTugas].reverse();
+          setDaftarTugas(diurutkan);
+        };
+
+        // urutan default
+
         return (
           <div>
             <div className="judul">
-              <h1>Catatan Belanjaku</h1>
+              <h1>catatan belanja ku</h1>
             </div>
             <div>
-              <input id="barang" placeholder="Masukkan nama barang" />
-              <input id="jumlah" placeholder="Masukkan jumlah" />
+              <input
+                type="text"
+                value={tugas}
+                onChange={handle}
+                placeholder="masukkan tugas"
+                oneKeyDown={(e) => {
+                  if (e.key === "Enter") {
+                    tambahTugas();
+                  }
+                }}
+              ></input>
+              <button id="kirim" onClick={tambahTugas}>
+                submit
+              </button>
+
+              <ul>
+                {daftarTugas.map((item, index) => (
+                  <li key={index}>
+                    {item}
+                    <button onClick={() => hapusTugas(index)}>X</button>
+                  </li>
+                ))}
+              </ul>
+
+              <div>
+                <button onClick={urutZa}>urutan z-a</button>
+                <button onClick={urutAz}>urutan sesuai a-z</button>
+              </div>
             </div>
           </div>
         );
