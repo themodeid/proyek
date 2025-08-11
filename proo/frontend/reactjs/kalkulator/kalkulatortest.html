@@ -1,0 +1,122 @@
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <script
+      src="https://unpkg.com/react@18/umd/react.development.js"
+      crossorigin
+    ></script>
+    <script
+      src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"
+      crossorigin
+    ></script>
+    <script src="https://unpkg.com/babel-standalone@6/babel.min.js"></script>
+
+    <style>
+      .judul {
+        background-color: aqua;
+        padding: 10px;
+      }
+      .list-item {
+        cursor: pointer;
+        margin: 5px 0;
+      }
+      .list-item:hover {
+        background-color: #def;
+      }
+    </style>
+    <title>Anime List</title>
+  </head>
+  <body>
+    <div id="root"></div>
+
+    <script type="text/babel">
+      function App() {
+        const [search, setSearch] = React.useState("");
+        const [daftar, setDaftar] = React.useState([
+          {
+            id: 1,
+            title: "Naruto",
+            sinopsis:
+              "Cerita tentang ninja muda bernama Naruto Uzumaki yang ingin diakui oleh desanya.",
+          },
+          {
+            id: 2,
+            title: "One Piece",
+            sinopsis:
+              "Petualangan Monkey D. Luffy mencari harta karun legendaris One Piece.",
+          },
+          {
+            id: 3,
+            title: "Attack on Titan",
+            sinopsis:
+              "Manusia berjuang melawan raksasa pemakan manusia yang mengancam umat manusia.",
+          },
+        ]);
+        const [selectedAnime, setSelectedAnime] = React.useState(null);
+
+        function handle(event) {
+          setSearch(event.target.value);
+        }
+
+        // Filter daftar berdasarkan search (case-insensitive)
+        const filtered = daftar.filter((anime) =>
+          anime.title.toLowerCase().includes(search.toLowerCase())
+        );
+
+        return (
+          <>
+            {/* Judul */}
+            <div className="judul">
+              <h4>Anime List</h4>
+            </div>
+
+            {/* Input pencarian */}
+            <div>
+              <input
+                type="text"
+                placeholder="Cari anime..."
+                value={search}
+                onChange={handle}
+              />
+            </div>
+
+            {/* Hasil pencarian */}
+            <div>
+              <p>Found {filtered.length} result(s)</p>
+            </div>
+
+            {/* List anime */}
+            <div style={{ display: "flex", gap: "20px" }}>
+              <div style={{ flex: 1 }}>
+                <h5>List</h5>
+                {filtered.map((anime) => (
+                  <div
+                    key={anime.id}
+                    className="list-item"
+                    onClick={() => setSelectedAnime(anime)}
+                  >
+                    {anime.title}
+                  </div>
+                ))}
+              </div>
+
+              {/* Sinopsis */}
+              <div style={{ flex: 2 }}>
+                <h5>Sinopsis</h5>
+                {selectedAnime ? (
+                  <p>{selectedAnime.sinopsis}</p>
+                ) : (
+                  <p>Pilih anime untuk melihat sinopsis</p>
+                )}
+              </div>
+            </div>
+          </>
+        );
+      }
+
+      const root = ReactDOM.createRoot(document.getElementById("root"));
+      root.render(<App />);
+    </script>
+  </body>
+</html>
